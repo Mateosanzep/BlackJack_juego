@@ -89,16 +89,17 @@ public class BlackjackGame {
 
     public List<Card> dealerPlay() {
         List<Card> newCards = new ArrayList<>();
-        while (dealer.wantsToHit(player.calculateHandValue())) {
+        
+            try {
+                Thread.sleep(800);
+                while (dealer.wantsToHit(player.calculateHandValue())) {
             Card newCard = deck.dealCard();
             dealer.addCard(newCard);
             newCards.add(newCard);
-            try {
-                Thread.sleep(800);
+                }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-        }
         resolveWinner();
         return newCards;
     }
